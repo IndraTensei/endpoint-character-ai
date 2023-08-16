@@ -20,8 +20,9 @@
   },
   "homepage": "https://github.com/IndraTensei/endpoint-character-ai#readme",
   "dependencies": {
+    "puppeteer": "^19.7.5",
     "express": "^4.17.1",
-    "node_characterai": "latest",
     "dotenv": "^10.0.0"
+    
   }
 }

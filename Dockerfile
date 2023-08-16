@@ -1,14 +1,20 @@
-# Use the official Puppeteer Docker image as the base
-FROM ghcr.io/puppeteer/puppeteer:latest
+# Use the official Node.js slim image
+FROM node:slim
 
 # Set the working directory
 WORKDIR /app
 
-# Copy your application code to the working directory
-COPY . .
+# Copy package.json and package-lock.json
+COPY package*.json ./
 
-# Expose the port your application is listening on
-EXPOSE 3000
+# Install application dependencies
+RUN npm install
+
+# Copy your application code to the container
+COPY . /app
+
+# Expose port 3000
+EXPOSE 8080
 
 # Start your application
-CMD [ "npm", "start" ]
+CMD [ "node", "index.js" ]

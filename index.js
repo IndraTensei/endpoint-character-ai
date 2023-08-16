@@ -7,9 +7,12 @@ dotenv.config(); // Load environment variables from .env file
 const app = express();
 const port = 3000;
 
-const characterAI = new CharacterAI();
+const characterAI = new CharacterAI({
+    puppeteerExecutablePath: process.env.PUPPETEER_EXECUTABLE_PATH
+});
+
 (async () => {
-    await characterAI.authenticateWithToken(process.env.AUTH_TOKEN); // Use the environment variable
+    await characterAI.authenticateWithToken('eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkVqYmxXUlVCWERJX0dDOTJCa2N1YyJ9.eyJpc3MiOiJodHRwczovL2NoYXJhY3Rlci1haS51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjRjZjZmMTQ4MGQ1ZDg3ZmU0NmRkZjRmIiwiYXVkIjpbImh0dHBzOi8vYXV0aDAuY2hhcmFjdGVyLmFpLyIsImh0dHBzOi8vY2hhcmFjdGVyLWFpLnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2OTEzMTYwMDYsImV4cCI6MTY5MzkwODAwNiwiYXpwIjoiZHlEM2dFMjgxTXFnSVNHN0Z1SVhZaEwyV0VrbnFaenYiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIn0.LxDVZMR7y5YiYp9O7ZAD1G1g4cz2drogw5289Y_7W9hFvJiWlwYFBFnFO5E1L9t8Fo1EertpEMFCuK2lb8EBoPDUqK70idIzRJcP2aL_SSIQtZ7WSmnAhCKy4IQaaHFxdh5mFBu5Ksji0LARQbuboU6sJKfzK-lTd8UpMGoA36TAAzHYZ9H58ESEkk8dYAKWoulEoCDJRHXutXp13SoeNOx5uSdp6s7G6Sq8w8DVnu_tZaQa925stYgGgeSHmzrwayWJoAj0Ii_JfYfkHiXgLfK9BLfwhD0DqXPDS2UI1ZdBvsCS1_3RYST1EI3J0OAj7hD6J4kCFHLFwUI4yt193w'); // Use the environment variable
 })();
 
 app.use(express.json());
@@ -27,7 +30,7 @@ app.get('/get-output', async (req, res) => {
     }
 });
 
-app.listen(port, () => {
+app.listen(8080, () => {
     console.log(`Server is running on port ${port}`);
 });
 
